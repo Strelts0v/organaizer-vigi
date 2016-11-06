@@ -22,9 +22,9 @@ public:
 
     void addItem(QStringList data);
 
-    void updateItem(QStringList data, int id);
+    void updateItem(QStringList data, int rowId);
 
-    void deleteItem(int id);
+    void deleteItem(int rowId);
 
     QStringList find(QString pattern);
 

@@ -15,10 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     table.cpp \
-    topic.cpp
+    topic.cpp \
+    businesstopic.cpp \
+    contactstopic.cpp \
+    notestopic.cpp \
+    sqlstoredprocedures.cpp \
+    databasedriver.cpp
 
 HEADERS  += mainwindow.h \
     table.h \
-    topic.h
+    topic.h \
+    businesstopic.h \
+    contactstopic.h \
+    notestopic.h \
+    sqlstoredprocedures.h \
+    databasedriver.h
 
 FORMS    += mainwindow.ui

@@ -24,8 +24,6 @@ private:
 
 public:
 
-    Topic();
-
     Topic(QString topicName, int rowCount, int columnCount,
           QStringList columnHeaders);
 
@@ -47,13 +45,13 @@ public:
 
     void setColumnHeaders(QStringList columnHeaders);
 
-    virtual addItem(QStringList data) = 0;
+    virtual void addItem(QStringList data) = 0;
 
-    virtual updateItem(QStringList data, int id) = 0;
+    virtual void updateItem(QStringList data, int id) = 0;
 
-    virtual deleteItem(int id) = 0;
+    virtual void deleteItem(int id) = 0;
 
-    virtual find(QString pattern) = 0;
+    virtual QStringList find(QString pattern) = 0;
 
     virtual QStringList getTopicContent() = 0;
 };

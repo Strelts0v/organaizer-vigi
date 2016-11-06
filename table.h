@@ -32,15 +32,15 @@ public:
 
     void addRow(QStringList dataList);
 
-    void updateRow(QStringList dataList, int id);
+    void updateRow(QStringList dataList, int rowId);
 
-    void deleteRow(int id);
+    void deleteRow(int rowId);
 
-    void find(QString info);
+    QStringList find(QString pattern);
 
 private:
 
-    void refreshTableContent();
+    QStringList refreshTableContent();
 
 };
 

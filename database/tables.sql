@@ -2,6 +2,7 @@ CREATE TABLE "business" (
 	"id_business" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
 	"head" VARCHAR(40),
 	"deadline" DATE,
+	"description" VARCHAR(300),
 	"priority" INTEGER
 );
 

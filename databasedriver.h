@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
 
 namespace app {
 
@@ -20,12 +21,19 @@ private:
 
 public:
 
-    static void executeQuery(QString query);
+    static void executeQuery(QString queryBody);
 
     static QStringList getRecordsAccordingTopic(QString topicName);
 
     static QStringList findInformation(QString queryBody);
 
+private:
+
+    static QStringList parseQueryBusinessRecords(QSqlQuery resultQuery);
+
+    static QStringList parseQueryContactsRecords(QSqlQuery resultQuery);
+
+    static QStringList parseQueryNotesRecords(QSqlQuery resultQuery);
 };
 
 #endif // DATABASEDRIVER_H

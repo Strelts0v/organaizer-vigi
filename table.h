@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include <QString>
+#include <QStringList>
 #include <QTableWidget>
 #include "topic.h"
 

@@ -12,7 +12,7 @@ class Topic;
 
 class Topic
 {
-private:
+protected:
 
     QString topicName;
 

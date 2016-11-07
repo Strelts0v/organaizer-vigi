@@ -63,7 +63,7 @@
      <string>Update</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="addButton">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -89,7 +89,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-style:italic; color:#5baa3e;&quot;&gt;Topics:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="businessButton">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -102,7 +102,7 @@
      <string>Business</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="contactsButton">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -115,7 +115,7 @@
      <string>Contacts</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="notesButton">
     <property name="geometry">
      <rect>
       <x>200</x>

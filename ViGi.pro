@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     contactstopic.cpp \
     notestopic.cpp \
     sqlstoredprocedures.cpp \
-    databasedriver.cpp
+    databasedriver.cpp \
+    businessitemblank.cpp
 
 HEADERS  += mainwindow.h \
     table.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h \
     contactstopic.h \
     notestopic.h \
     sqlstoredprocedures.h \
-    databasedriver.h
+    databasedriver.h \
+    businessitemblank.h
 
 FORMS    += mainwindow.ui

@@ -40,7 +40,7 @@ public:
 
 private:
 
-    QStringList refreshTableContent();
+    void refreshTableContent();
 
 };
 

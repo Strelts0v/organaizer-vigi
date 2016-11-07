@@ -45,7 +45,8 @@ QStringList Table::find(QString pattern)
     return topic->find(pattern);
 }
 
-QStringList Table::refreshTableContent()
+void Table::refreshTableContent()
 {
-    return topic->getTopicContent();
+    QStringList dataList = topic->getTopicContent();
+    // заполнение таблицы
 }

@@ -5,8 +5,11 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QRadioButton>
 #include <QWidget>
+
+namespace app {
+class BlankForContactsItem;
+}
 
 class BlankForContactsItem : public QDialog
 {

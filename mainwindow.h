@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <table.h>
 
 namespace Ui {
 class MainWindow;
@@ -10,10 +11,21 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
+
+    Table* table;
+
+    Ui::MainWindow *ui;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+
+    explicit MainWindow(QWidget *parent = 0, Table* table = 0);
+
     ~MainWindow();
+
+    Table getTable();
+
+    void setTable(Table* table);
 
 private slots:
     void on_addButton_clicked();
@@ -31,7 +43,8 @@ private slots:
     void on_updateButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+
+    //int getTableTopic();
 };
 
 #endif // MAINWINDOW_H

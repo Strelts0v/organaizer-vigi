@@ -7,9 +7,7 @@
 #include "topic.h"
 
 namespace app {
-
 class Table;
-
 }
 
 class Table

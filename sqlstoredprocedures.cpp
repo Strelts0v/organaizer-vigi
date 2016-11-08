@@ -11,7 +11,7 @@ void SqlStoredProcedures::addBusinessItem(QString head, QString deadline,
             .arg(deadline)
             .arg(description)
             .arg(priority);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::updateBusinessItem(QString head, QString deadline,
@@ -25,7 +25,7 @@ void SqlStoredProcedures::updateBusinessItem(QString head, QString deadline,
             .arg(description)
             .arg(priority)
             .arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::deleteBusinessItem(int rowId)
@@ -33,13 +33,13 @@ void SqlStoredProcedures::deleteBusinessItem(int rowId)
     QString queryBody = "delete from business"
                         "where rowId = %1";
     queryBody = queryBody.arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 QStringList SqlStoredProcedures::getBusinessContent()
 {
     QString topicName = "business";
-    return DatabaseDriver::getRecordsAccordingTopic(topicName);
+    return DatabaseDriver::getDatabaseDriver()->getRecordsAccordingTopic(topicName);
 }
 
 void SqlStoredProcedures::addContactsItem(QString fullName, QString phoneNumbers, QString email)
@@ -50,7 +50,7 @@ void SqlStoredProcedures::addContactsItem(QString fullName, QString phoneNumbers
     queryBody = queryBody.arg(fullName)
             .arg(phoneNumbers)
             .arg(email);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::updateContactsItem(QString fullName, QString phoneNumbers, QString email, int rowId)
@@ -62,7 +62,7 @@ void SqlStoredProcedures::updateContactsItem(QString fullName, QString phoneNumb
             .arg(phoneNumbers)
             .arg(email)
             .arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::deleteContactsItem(int rowId)
@@ -70,13 +70,13 @@ void SqlStoredProcedures::deleteContactsItem(int rowId)
     QString queryBody = "delete from contacts"
                         "where rowId = %1";
     queryBody = queryBody.arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 QStringList SqlStoredProcedures::getContactsContent()
 {
     QString topicName = "contacts";
-    return DatabaseDriver::getRecordsAccordingTopic(topicName);
+    return DatabaseDriver::getDatabaseDriver()->getRecordsAccordingTopic(topicName);
 }
 
 void SqlStoredProcedures::addNotesItem(QString head, QString description)
@@ -86,7 +86,7 @@ void SqlStoredProcedures::addNotesItem(QString head, QString description)
                     "('%1', '%2')";
     queryBody = queryBody.arg(head)
             .arg(description);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::updateNotesItem(QString head, QString description, int rowId)
@@ -97,7 +97,7 @@ void SqlStoredProcedures::updateNotesItem(QString head, QString description, int
     queryBody = queryBody.arg(head)
             .arg(description)
             .arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 void SqlStoredProcedures::deleteNotesItem(int rowId)
@@ -105,13 +105,13 @@ void SqlStoredProcedures::deleteNotesItem(int rowId)
     QString queryBody = "delete from notes"
                         "where rowId = %1";
     queryBody = queryBody.arg(rowId);
-    DatabaseDriver::executeQuery(queryBody);
+    DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
 QStringList SqlStoredProcedures::getNotesContent()
 {
     QString topicName = "notes";
-    return DatabaseDriver::getRecordsAccordingTopic(topicName);
+    return DatabaseDriver::getDatabaseDriver()->getRecordsAccordingTopic(topicName);
 }
 
 QStringList SqlStoredProcedures::findDataInTopic(QString pattern, QString topicName)

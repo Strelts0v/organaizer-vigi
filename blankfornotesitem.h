@@ -1,12 +1,33 @@
 #ifndef BLANKFORNOTESITEM_H
 #define BLANKFORNOTESITEM_H
 
-#include <QObject>
+#include <QDialog>
+#include <QLabel>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QWidget>
 
-class BlankForNotesItem
+namespace app {
+class BlankForNotesItem;
+}
+
+class BlankForNotesItem : public QDialog
 {
+    Q_OBJECT
+
+private:
+
+    QLabel* headerLabel;
+    QLineEdit* headEdit;
+    QLabel* headLabel;
+    QTextEdit* descriptionEdit;
+    QLabel* descriptionLabel;
+    QPushButton* okButton;
+    QPushButton* cancelButton;
+
 public:
-    BlankForNotesItem();
+    BlankForNotesItem(QWidget* parent = NULL);
 };
 
 #endif // BLANKFORNOTESITEM_H

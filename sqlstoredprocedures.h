@@ -5,9 +5,7 @@
 #include <QStringList>
 
 namespace app {
-
 class SqlStoredProcedures;
-
 }
 
 class SqlStoredProcedures

@@ -3,6 +3,18 @@
 #include <QtSql/QSqlRecord>
 #include <QDebug>
 
+const QString databasePath = "..\ViGi\database\database.sqlite";
+
+DatabaseDriver* DatabaseDriver::driver = NULL;
+
+DatabaseDriver* DatabaseDriver::getDatabaseDriver()
+{
+    if(!DatabaseDriver::driver){
+        DatabaseDriver::driver = new DatabaseDriver(databasePath);
+    }
+    return DatabaseDriver::driver;
+}
+
 void DatabaseDriver::executeQuery(QString queryBody)
 {
     QSqlQuery query;
@@ -35,6 +47,15 @@ QStringList DatabaseDriver::getRecordsAccordingTopic(QString topicName)
 QStringList DatabaseDriver::findInformation(QString queryBody)
 {
 
+}
+
+DatabaseDriver::DatabaseDriver(const QString databasePath)
+{
+    *database = QSqlDatabase::addDatabase("QSQLITE");
+    database->setDatabaseName(databasePath);
+    if(!database->open()){
+        qDebug() << "Не удаётся подключится к базе данных.";
+    }
 }
 
 QStringList DatabaseDriver::parseQueryBusinessRecords(QSqlQuery resultQuery)

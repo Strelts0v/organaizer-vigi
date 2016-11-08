@@ -16,7 +16,6 @@ BlankForBusinessItem::BlankForBusinessItem(QWidget *parent) : QDialog(parent)
 
     descriptionLabel = new QLabel("description: ");
     descriptionEdit = new QTextEdit();
-    descriptionEdit->resize(QSize(100, 30));
 
     priorityLabel = new QLabel("priority: ");
     lowPriority = new QRadioButton("low");

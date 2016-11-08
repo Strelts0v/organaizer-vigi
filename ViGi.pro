@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     databasedriver.cpp \
     blankforbusinessitem.cpp \
     blankforcontactsitem.cpp \
-    blankfornotesitem.cpp
+    blankfornotesitem.cpp \
+    applicationcontext.cpp
 
 HEADERS  += mainwindow.h \
     table.h \
@@ -35,6 +36,7 @@ HEADERS  += mainwindow.h \
     databasedriver.h \
     blankforbusinessitem.h \
     blankforcontactsitem.h \
-    blankfornotesitem.h
+    blankfornotesitem.h \
+    applicationcontext.h
 
 FORMS    += mainwindow.ui

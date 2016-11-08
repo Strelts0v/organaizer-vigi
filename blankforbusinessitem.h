@@ -10,6 +10,10 @@
 #include <QWidget>
 #include <QTextEdit>
 
+namespace app {
+class BlankForBusinessItem;
+}
+
 class BlankForBusinessItem : public QDialog
 {
     Q_OBJECT                // макрос, для обработки класса метаобъектным компилятором Qt,

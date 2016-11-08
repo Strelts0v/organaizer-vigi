@@ -4,7 +4,7 @@
 
 BlankForContactsItem::BlankForContactsItem(QWidget *parent) : QDialog(parent)
 {
-    headerLabel = new QLabel("Input data for new business");
+    headerLabel = new QLabel("Input data for new contact");
 
     fullNameLabel = new QLabel("full name: ");
     fullNameEdit = new QLineEdit();

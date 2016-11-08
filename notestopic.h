@@ -6,9 +6,7 @@
 #include <topic.h>
 
 namespace app{
-
 class NotesTopic;
-
 }
 
 class NotesTopic : private Topic

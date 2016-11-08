@@ -7,33 +7,39 @@
 #include <QtSql/QSqlQuery>
 
 namespace app {
-
 class DatabaseDriver;
-const QString DATABASE_PATH = "../ViGi/database/database.sqlite";
-
 }
+
+// TODO:
+// сделать класс синглтоном
 
 class DatabaseDriver
 {
 private:
 
-    static QSqlDatabase database;
+    static DatabaseDriver* driver;
+
+    QSqlDatabase* database;
 
 public:
 
-    static void executeQuery(QString queryBody);
+    static DatabaseDriver* getDatabaseDriver();
 
-    static QStringList getRecordsAccordingTopic(QString topicName);
+    void executeQuery(QString queryBody);
 
-    static QStringList findInformation(QString queryBody);
+    QStringList getRecordsAccordingTopic(QString topicName);
+
+    QStringList findInformation(QString queryBody);
 
 private:
 
-    static QStringList parseQueryBusinessRecords(QSqlQuery resultQuery);
+    DatabaseDriver(const QString databasePath);
 
-    static QStringList parseQueryContactsRecords(QSqlQuery resultQuery);
+    QStringList parseQueryBusinessRecords(QSqlQuery resultQuery);
 
-    static QStringList parseQueryNotesRecords(QSqlQuery resultQuery);
+    QStringList parseQueryContactsRecords(QSqlQuery resultQuery);
+
+    QStringList parseQueryNotesRecords(QSqlQuery resultQuery);
 };
 
 #endif // DATABASEDRIVER_H

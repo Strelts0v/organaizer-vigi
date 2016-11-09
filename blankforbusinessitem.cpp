@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
+
 BlankForBusinessItem::BlankForBusinessItem(QWidget *parent) : QDialog(parent)
 {
     headerLabel = new QLabel("Input data for new business");
@@ -18,9 +19,13 @@ BlankForBusinessItem::BlankForBusinessItem(QWidget *parent) : QDialog(parent)
     descriptionEdit = new QTextEdit();
 
     priorityLabel = new QLabel("priority: ");
-    lowPriority = new QRadioButton("low");
-    mediumPriority = new QRadioButton("medium");
-    highPriority = new QRadioButton("high");
+    QRadioButton *lowPriority = new QRadioButton("low");
+    QRadioButton *mediumPriority = new QRadioButton("medium");
+    QRadioButton *highPriority = new QRadioButton("high");
+    priority = new QButtonGroup(this);
+    priority->addButton(lowPriority, 3);
+    priority->addButton(mediumPriority, 2);
+    priority->addButton(highPriority, 1);
 
     okButton = new QPushButton("OK");
     cancelButton = new QPushButton("Cancel");
@@ -61,8 +66,19 @@ BlankForBusinessItem::BlankForBusinessItem(QWidget *parent) : QDialog(parent)
     setLayout(mainLayot);
     setWindowTitle("ViGi");
 
-    connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(okButton, SIGNAL(clicked()), this, SLOT(okClickedSlot()));
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+}
+
+void BlankForBusinessItem::okClickedSlot()
+{
+    QStringList dataList;
+    dataList.push_back(headEdit->text());
+    dataList.push_back(deadlineEdit->text());
+    dataList.push_back(descriptionEdit->toPlainText());
+    dataList.push_back(QString::number(priority->checkedId()));
+    emit sendDataforNewBusiness(dataList);
+    this->close();
 }
 
 

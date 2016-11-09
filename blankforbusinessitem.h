@@ -9,6 +9,7 @@
 #include <QRadioButton>
 #include <QWidget>
 #include <QTextEdit>
+#include <QButtonGroup>
 
 namespace app {
 class BlankForBusinessItem;
@@ -28,9 +29,7 @@ private:
     QLabel* deadlineLabel;
     QTextEdit* descriptionEdit;
     QLabel* descriptionLabel;
-    QRadioButton* lowPriority;
-    QRadioButton* mediumPriority;
-    QRadioButton* highPriority;
+    QButtonGroup* priority;
     QLabel* priorityLabel;
     QPushButton* okButton;
     QPushButton* cancelButton;
@@ -39,6 +38,13 @@ public:
 
     BlankForBusinessItem(QWidget *parent = NULL);       // можем присвоить окну родителя,
                                                         // если его не будет, то по умолчанию NULL
+public slots:
+
+    void okClickedSlot();
+
+signals:
+
+    void sendDataforNewBusiness(QStringList);
 };
 
 #endif // BLANKFORBUSINESSITEM_H

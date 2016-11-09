@@ -19,7 +19,7 @@ private:
 
     static DatabaseDriver* driver;
 
-    QSqlDatabase* database;
+    QSqlDatabase database;
 
 public:
 
@@ -33,7 +33,7 @@ public:
 
 private:
 
-    DatabaseDriver(const QString databasePath);
+    DatabaseDriver();
 
     QStringList parseQueryBusinessRecords(QSqlQuery resultQuery);
 

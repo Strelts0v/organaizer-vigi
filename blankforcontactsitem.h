@@ -31,6 +31,13 @@ public:
 
     BlankForContactsItem(QWidget *parent = NULL);
 
+public slots:
+
+    void okClickedSlot();
+
+signals:
+
+    void sendDataforNewContact(QStringList);
 };
 
 #endif // BLANKFORCONTACTSITEM_H

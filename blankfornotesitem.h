@@ -28,6 +28,14 @@ private:
 
 public:
     BlankForNotesItem(QWidget* parent = NULL);
+
+public slots:
+
+    void okClickedSlot();
+
+signals:
+
+    void sendDataforNewNote(QStringList);
 };
 
 #endif // BLANKFORNOTESITEM_H

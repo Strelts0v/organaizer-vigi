@@ -21,19 +21,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::addNewTopicItem(QStringList dataList)
+{
+    table->addRow(dataList);
+}
+
 void MainWindow::on_addButton_clicked()
 {
+    BlankForBusinessItem* bBlank = new BlankForBusinessItem();
+    BlankForContactsItem* cBlank = new BlankForContactsItem();
+    BlankForNotesItem* nBlank = new BlankForNotesItem();
+
     if(QString::compare(table->getTopic()->getTopicName(), "business") == 0){
-        BlankForBusinessItem* blank = new BlankForBusinessItem();
-        blank->show();
+        bBlank->show();
     } else if (QString::compare(table->getTopic()->getTopicName(), "contacts") == 0){
-        BlankForContactsItem* blank = new BlankForContactsItem();
-        blank->show();
+        cBlank->show();
     } else if (QString::compare(table->getTopic()->getTopicName(), "notes") == 0){
-        BlankForNotesItem* blank = new BlankForNotesItem();
-        blank->show();
+        nBlank->show();
     }
-    // TODO
+
+    QObject::connect(bBlank, SIGNAL(sendDataforNewBusiness(QStringList)), this, SLOT(addNewTopicItem(QStringList)));
+    QObject::connect(cBlank, SIGNAL(sendDataforNewContact(QStringList)), this, SLOT(addNewTopicItem(QStringList)));
+    QObject::connect(nBlank, SIGNAL(sendDataforNewNote(QStringList)), this, SLOT(addNewTopicItem(QStringList)));
 }
 
 void MainWindow::on_businessButton_clicked()
@@ -55,7 +64,7 @@ void MainWindow::on_deleteButton_clicked()
 
 void MainWindow::on_exitButton_clicked()
 {
-
+    this->close();
 }
 
 void MainWindow::on_notesButton_clicked()

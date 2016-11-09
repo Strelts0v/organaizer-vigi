@@ -50,6 +50,16 @@ QStringList Table::find(QString pattern)
 
 void Table::refreshTableContent()
 {
-    // QStringList dataList = topic->getTopicContent();
-    // заполнение таблицы
+    QStringList dataList = topic->getTopicContent();
+    topic->setRowCount(dataList.size()/topic->getColumnCount());
+    tableWidget->setColumnCount(topic->getColumnCount());
+    tableWidget->setRowCount(topic->getRowCount());
+    tableWidget->setHorizontalHeaderLabels(topic->getColumnHeaders());
+
+    int count = 0;
+    for(int i = 0; i < tableWidget->rowCount(); i++)
+        for(int j = 0; j < tableWidget->columnCount(); j++){
+            QTableWidgetItem *item = new QTableWidgetItem(dataList[count++]);
+            tableWidget->setItem(i, j, item);
+        }
 }

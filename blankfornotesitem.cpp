@@ -47,6 +47,15 @@ BlankForNotesItem::BlankForNotesItem(QWidget *parent) : QDialog(parent)
     setLayout(mainLayot);
     setWindowTitle("ViGi");
 
-    connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(okButton, SIGNAL(clicked()), this, SLOT(okClickedSlot()));
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+}
+
+void BlankForNotesItem::okClickedSlot()
+{
+    QStringList dataList;
+    dataList.push_back(headEdit->text());
+    dataList.push_back(descriptionEdit->toPlainText());
+    emit sendDataforNewNote(dataList);
+    this->close();
 }

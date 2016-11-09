@@ -47,6 +47,16 @@ BlankForContactsItem::BlankForContactsItem(QWidget *parent) : QDialog(parent)
     setLayout(mainLayot);
     setWindowTitle("ViGi");
 
-    connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
+    connect(okButton, SIGNAL(clicked()), this, SLOT(okClickedSlot()));
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(close()));
+}
+
+void BlankForContactsItem::okClickedSlot()
+{
+    QStringList dataList;
+    dataList.push_back(fullNameEdit->text());
+    dataList.push_back(phoneNumbersEdit->text());
+    dataList.push_back(emailEdit->text());
+    emit sendDataforNewContact(dataList);
+    this->close();
 }

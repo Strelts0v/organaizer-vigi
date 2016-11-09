@@ -3,14 +3,13 @@
 #include <QtSql/QSqlRecord>
 #include <QDebug>
 
-const QString databasePath = "..\ViGi\database\database.sqlite";
-
 DatabaseDriver* DatabaseDriver::driver = NULL;
 
 DatabaseDriver* DatabaseDriver::getDatabaseDriver()
 {
-    if(!DatabaseDriver::driver){
-        DatabaseDriver::driver = new DatabaseDriver(databasePath);
+    if(!driver){
+        //const QString databasePath = "..\\ViGi\\database\\database.sqlite";
+        driver = new DatabaseDriver();
     }
     return DatabaseDriver::driver;
 }
@@ -42,6 +41,7 @@ QStringList DatabaseDriver::getRecordsAccordingTopic(QString topicName)
     }else {
         qDebug() << "Error! Invalid name of topic...";
     }
+    return dataList;
 }
 
 QStringList DatabaseDriver::findInformation(QString queryBody)
@@ -49,11 +49,11 @@ QStringList DatabaseDriver::findInformation(QString queryBody)
 
 }
 
-DatabaseDriver::DatabaseDriver(const QString databasePath)
+DatabaseDriver::DatabaseDriver()
 {
-    *database = QSqlDatabase::addDatabase("QSQLITE");
-    database->setDatabaseName(databasePath);
-    if(!database->open()){
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("..\\ViGi\\database\\database.sqlite");
+    if(!database.open()){
         qDebug() << "Не удаётся подключится к базе данных.";
     }
 }

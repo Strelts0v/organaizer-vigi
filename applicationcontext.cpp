@@ -1,7 +1,7 @@
 #include "applicationcontext.h"
 
 ApplicationContext::ApplicationContext()
-{
+{    
     businessTopic = new BusinessTopic("business", 0, 5, QStringList() << "bID"
                                                      << "Head" << "Deadline" << "Description" << "Priority");
     contactsTopic = new ContactsTopic("contacts", 0, 4, QStringList() << "cID"

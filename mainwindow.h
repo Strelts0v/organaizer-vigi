@@ -14,11 +14,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
 
-    Table *table;
+    Table* table;
 
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
 
-    ApplicationContext *context;
+    ApplicationContext* context;
 
 public:
 
@@ -27,6 +27,9 @@ public:
     ~MainWindow();
 
 private slots:
+
+    void addNewTopicItem(QStringList dataList);
+
     void on_addButton_clicked();
 
     void on_businessButton_clicked();

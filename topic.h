@@ -22,6 +22,8 @@ protected:
 
 public:
 
+    Topic();
+
     Topic(QString topicName, int rowCount, int columnCount,
           QStringList columnHeaders);
 

@@ -1,5 +1,8 @@
 #include "topic.h"
 
+Topic::Topic()
+{}
+
 Topic::Topic(QString topicName, int rowCount, int columnCount,
       QStringList columnHeaders)
 {

@@ -1,6 +1,9 @@
 #include "contactstopic.h"
 #include "sqlstoredprocedures.h"
 
+ContactsTopic::ContactsTopic() : Topic::Topic()
+{}
+
 ContactsTopic::ContactsTopic(QString topicName, int rowCount, int columnCount,
               QStringList columnHeaders):
     Topic(topicName, rowCount, columnCount, columnHeaders)

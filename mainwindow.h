@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <table.h>
+#include "table.h"
+#include "applicationcontext.h"
 
 namespace Ui {
 class MainWindow;
@@ -13,19 +14,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
 
-    Table* table;
+    Table *table;
 
     Ui::MainWindow *ui;
 
+    ApplicationContext *context;
+
 public:
 
-    explicit MainWindow(QWidget *parent = 0, Table* table = 0);
+    explicit MainWindow(QWidget *parent = 0);
 
     ~MainWindow();
-
-    Table getTable();
-
-    void setTable(Table* table);
 
 private slots:
     void on_addButton_clicked();

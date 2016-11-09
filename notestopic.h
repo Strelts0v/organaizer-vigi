@@ -9,9 +9,11 @@ namespace app{
 class NotesTopic;
 }
 
-class NotesTopic : private Topic
+class NotesTopic : public Topic
 {
 public:
+
+    NotesTopic();
 
     NotesTopic(QString topicName, int rowCount, int columnCount,
                   QStringList columnHeaders);

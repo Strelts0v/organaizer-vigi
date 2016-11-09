@@ -1,5 +1,8 @@
 #include "table.h"
 
+Table::Table()
+{}
+
 Table::Table(QTableWidget* tableWidget)
 {
     this->tableWidget = tableWidget;
@@ -47,6 +50,6 @@ QStringList Table::find(QString pattern)
 
 void Table::refreshTableContent()
 {
-    QStringList dataList = topic->getTopicContent();
+    // QStringList dataList = topic->getTopicContent();
     // заполнение таблицы
 }

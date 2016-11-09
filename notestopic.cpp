@@ -1,6 +1,9 @@
 #include "notestopic.h"
 #include "sqlstoredprocedures.h"
 
+NotesTopic::NotesTopic() : Topic::Topic()
+{}
+
 NotesTopic::NotesTopic(QString topicName, int rowCount, int columnCount,
               QStringList columnHeaders):
     Topic(topicName, rowCount, columnCount, columnHeaders)

@@ -20,6 +20,8 @@ private:
 
 public:
 
+    Table();
+
     Table(QTableWidget* tableWidget);
 
     ~Table();
@@ -35,8 +37,6 @@ public:
     void deleteRow(int rowId);
 
     QStringList find(QString pattern);
-
-private:
 
     void refreshTableContent();
 

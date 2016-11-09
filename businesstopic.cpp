@@ -1,6 +1,9 @@
 #include "businesstopic.h"
 #include "sqlstoredprocedures.h"
 
+BusinessTopic::BusinessTopic() : Topic::Topic()
+{}
+
 BusinessTopic::BusinessTopic(QString topicName, int rowCount, int columnCount,
               QStringList columnHeaders):
     Topic(topicName, rowCount, columnCount, columnHeaders)

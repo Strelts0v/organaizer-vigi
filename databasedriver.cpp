@@ -39,7 +39,7 @@ QStringList DatabaseDriver::getRecordsAccordingTopic(QString topicName)
         dataList = parseQueryContactsRecords(query);
     }else if(QString::compare(topicName, "notes") == 0){
         dataList = parseQueryContactsRecords(query);
-    } else {
+    }else {
         qDebug() << "Error! Invalid name of topic...";
     }
 }

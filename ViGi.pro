@@ -40,3 +40,7 @@ HEADERS  += mainwindow.h \
     applicationcontext.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES +=
+
+RESOURCES += resources/pictures-resources.qrc

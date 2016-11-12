@@ -40,6 +40,16 @@ public:
 
     void refreshTableContent();
 
+private:
+
+    void setTopicStyleSheet();
+
+    void setBusinessStyleSheet();
+
+    void setContactsStyleSheet();
+
+    void setNotesStyleSheet();
+
 };
 
 #endif // TABLE_H

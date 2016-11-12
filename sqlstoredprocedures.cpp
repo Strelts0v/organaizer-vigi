@@ -15,24 +15,24 @@ void SqlStoredProcedures::addBusinessItem(QString head, QString deadline,
 }
 
 void SqlStoredProcedures::updateBusinessItem(QString head, QString deadline,
-                        QString description, int priority, int rowId)
+                        QString description, int priority, int businessId)
 {
-    QString queryBody = "update business"
+    QString queryBody = "update business "
                     "set head = '%1', deadline = '%2', description = '%3', "
-                    "priority = %4 where rowId = %5";
+                    "priority = %4 where id_business = %5";
     queryBody = queryBody.arg(head)
             .arg(deadline)
             .arg(description)
             .arg(priority)
-            .arg(rowId);
+            .arg(businessId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
-void SqlStoredProcedures::deleteBusinessItem(int rowId)
+void SqlStoredProcedures::deleteBusinessItem(int businessId)
 {
-    QString queryBody = "delete from business"
-                        "where rowId = %1";
-    queryBody = queryBody.arg(rowId);
+    QString queryBody = "delete from business "
+                        "where id_business = %1";
+    queryBody = queryBody.arg(businessId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
@@ -53,23 +53,23 @@ void SqlStoredProcedures::addContactsItem(QString fullName, QString phoneNumbers
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
-void SqlStoredProcedures::updateContactsItem(QString fullName, QString phoneNumbers, QString email, int rowId)
+void SqlStoredProcedures::updateContactsItem(QString fullName, QString phoneNumbers, QString email, int contactId)
 {
-    QString queryBody = "update contacts"
+    QString queryBody = "update contacts "
                     "set full_name = '%1', phone_numbers = '%2', email = '%3' "
-                    "where rowId = %4";
+                    "where id_contact = %4";
     queryBody = queryBody.arg(fullName)
             .arg(phoneNumbers)
             .arg(email)
-            .arg(rowId);
+            .arg(contactId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
-void SqlStoredProcedures::deleteContactsItem(int rowId)
+void SqlStoredProcedures::deleteContactsItem(int contactId)
 {
-    QString queryBody = "delete from contacts"
-                        "where rowId = %1";
-    queryBody = queryBody.arg(rowId);
+    QString queryBody = "delete from contacts "
+                        "where id_contact = %1";
+    queryBody = queryBody.arg(contactId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
@@ -89,22 +89,22 @@ void SqlStoredProcedures::addNotesItem(QString head, QString description)
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
-void SqlStoredProcedures::updateNotesItem(QString head, QString description, int rowId)
+void SqlStoredProcedures::updateNotesItem(QString head, QString description, int noteId)
 {
-    QString queryBody = "update notes"
+    QString queryBody = "update notes "
                     "set head = '%1', description = '%2' "
-                    "where rowId = %3";
+                    "where id_note = %3";
     queryBody = queryBody.arg(head)
             .arg(description)
-            .arg(rowId);
+            .arg(noteId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 
-void SqlStoredProcedures::deleteNotesItem(int rowId)
+void SqlStoredProcedures::deleteNotesItem(int noteId)
 {
-    QString queryBody = "delete from notes"
-                        "where rowId = %1";
-    queryBody = queryBody.arg(rowId);
+    QString queryBody = "delete from notes "
+                        "where id_note = %1";
+    queryBody = queryBody.arg(noteId);
     DatabaseDriver::getDatabaseDriver()->executeQuery(queryBody);
 }
 

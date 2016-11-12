@@ -27,21 +27,24 @@ void BusinessTopic::addItem(QStringList data)
     }
 }
 
-void BusinessTopic::updateItem(QStringList data, int rowId)
+void BusinessTopic::updateItems(QStringList dataList)
 {
-    QString head = data[0];
-    QString deadline = data[1];
-    QString description = data[2];
-    bool ok;
-    int priority = data[3].toInt(&ok, 10);
-    if(ok){
-        SqlStoredProcedures::updateBusinessItem(head, deadline, description, priority, rowId);
+    for(int i = 0; i < dataList.size();){
+        QString head = dataList[i++];
+        QString deadline = dataList[i++];
+        QString description = dataList[i++];
+        bool ok1, ok2;
+        int priority = dataList[i++].toInt(&ok1, 10);
+        int businessId = dataList[i++].toInt(&ok2, 10);
+        if(ok1 && ok2){
+            SqlStoredProcedures::updateBusinessItem(head, deadline, description, priority, businessId);
+        }
     }
 }
 
-void BusinessTopic::deleteItem(int rowId)
+void BusinessTopic::deleteItem(int businessId)
 {
-    SqlStoredProcedures::deleteBusinessItem(rowId);
+    SqlStoredProcedures::deleteBusinessItem(businessId);
 }
 
 QStringList BusinessTopic::find(QString pattern)

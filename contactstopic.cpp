@@ -20,17 +20,24 @@ void ContactsTopic::addItem(QStringList data)
     SqlStoredProcedures::addContactsItem(fullName, phoneNumbers, email);
 }
 
-void ContactsTopic::updateItem(QStringList data, int rowId)
+void ContactsTopic::updateItems(QStringList dataList)
 {
-    QString fullName = data[0];
-    QString phoneNumbers = data[1];
-    QString email = data[2];
-    SqlStoredProcedures::updateContactsItem(fullName, phoneNumbers, email, rowId);
+
+    for(int i = 0; i < dataList.size(); ){
+        QString fullName = dataList[i++];
+        QString phoneNumbers = dataList[i++];
+        QString email = dataList[i++];
+        bool ok;
+        int contactId = dataList[i++].toInt(&ok, 10);
+        if(ok){
+            SqlStoredProcedures::updateContactsItem(fullName, phoneNumbers, email, contactId);
+        }
+    }
 }
 
-void ContactsTopic::deleteItem(int rowId)
+void ContactsTopic::deleteItem(int contactId)
 {
-    SqlStoredProcedures::deleteContactsItem(rowId);
+    SqlStoredProcedures::deleteContactsItem(contactId);
 }
 
 QStringList ContactsTopic::find(QString pattern)

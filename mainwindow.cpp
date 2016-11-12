@@ -6,6 +6,10 @@
 #include <QDialog>
 #include <QWidget>
 #include <QObject>
+#include <QDebug>
+#include <vector>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +28,16 @@ MainWindow::~MainWindow()
 void MainWindow::addNewTopicItem(QStringList dataList)
 {
     table->addRow(dataList);
+}
+
+void MainWindow::updateTopicItems(QStringList dataList)
+{
+    table->updateRows(dataList);
+}
+
+void MainWindow::deleteTopicItem(int id)
+{
+    table->deleteRow(id);
 }
 
 void MainWindow::on_addButton_clicked()
@@ -59,7 +73,24 @@ void MainWindow::on_contactsButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
+    QList<QTableWidgetItem *> selectedList = ui->tableWidget->selectedItems();
 
+    int listCount = 0; bool ok;
+    QVector<int> idList;
+    idList.push_back(ui->tableWidget->item(selectedList.at(0)->row(), ui->tableWidget->columnCount() - 1)->text().toInt(&ok, 10));
+    listCount++;
+    for (int i = 1; i < selectedList.count(); i++)
+    {
+        int id = ui->tableWidget->item(selectedList.at(i)->row(), ui->tableWidget->columnCount() - 1)->text().toInt(&ok, 10);
+        if(idList[listCount - 1] != id){
+            idList.push_back(id);
+            listCount++;
+        }
+    }
+    for(int i = 0; i < idList.size(); i++){
+        deleteTopicItem(idList[i]);
+    }
+    table->refreshTableContent();
 }
 
 void MainWindow::on_exitButton_clicked()
@@ -75,5 +106,12 @@ void MainWindow::on_notesButton_clicked()
 
 void MainWindow::on_updateButton_clicked()
 {
-
+    QStringList updateDataList;
+    int count = 0;
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+        for(int j = 0;  j < ui->tableWidget->columnCount(); j++){
+            updateDataList.push_back(ui->tableWidget->item(i, j)->text());
+        }
+    }
+    updateTopicItems(updateDataList);
 }

@@ -37,7 +37,7 @@ QStringList DatabaseDriver::getRecordsAccordingTopic(QString topicName)
     }else if(QString::compare(topicName, "contacts") == 0){
         dataList = parseQueryContactsRecords(query);
     }else if(QString::compare(topicName, "notes") == 0){
-        dataList = parseQueryContactsRecords(query);
+        dataList = parseQueryNotesRecords(query);
     }else {
         qDebug() << "Error! Invalid name of topic...";
     }
@@ -63,11 +63,11 @@ QStringList DatabaseDriver::parseQueryBusinessRecords(QSqlQuery resultQuery)
     QSqlRecord record = resultQuery.record();
     QStringList dataList;
     while(resultQuery.next()){
-        dataList.push_back(resultQuery.value(record.indexOf("id_business")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("head")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("deadline")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("description")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("priority")).toString());
+        dataList.push_back(resultQuery.value(record.indexOf("id_business")).toString());
     }
     return dataList;
 }
@@ -77,10 +77,10 @@ QStringList DatabaseDriver::parseQueryContactsRecords(QSqlQuery resultQuery)
     QSqlRecord record = resultQuery.record();
     QStringList dataList;
     while(resultQuery.next()){
-        dataList.push_back(resultQuery.value(record.indexOf("id_contact")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("full_name")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("phone_numbers")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("email")).toString());
+        dataList.push_back(resultQuery.value(record.indexOf("id_contact")).toString());
     }
     return dataList;
 }
@@ -90,9 +90,9 @@ QStringList DatabaseDriver::parseQueryNotesRecords(QSqlQuery resultQuery)
     QSqlRecord record = resultQuery.record();
     QStringList dataList;
     while(resultQuery.next()){
-        dataList.push_back(resultQuery.value(record.indexOf("id_note")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("head")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("description")).toString());
+        dataList.push_back(resultQuery.value(record.indexOf("id_note")).toString());
     }
     return dataList;
 }

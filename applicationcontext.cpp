@@ -2,12 +2,12 @@
 
 ApplicationContext::ApplicationContext()
 {    
-    businessTopic = new BusinessTopic("business", 0, 5, QStringList() << "bID"
-                                                     << "Head" << "Deadline" << "Description" << "Priority");
-    contactsTopic = new ContactsTopic("contacts", 0, 4, QStringList() << "cID"
-                                                    << "Full name" << "Phone numbers" << "Email");
-    notesTopic = new NotesTopic("notes", 0, 3, QStringList() << "nID"
-                                            << "Head" << "Description");
+    businessTopic = new BusinessTopic("business", 0, 5, QStringList() << "Head"
+                                                     << "Deadline" << "Description" << "Priority" << "bID");
+    contactsTopic = new ContactsTopic("contacts", 0, 4, QStringList() << "Full name"
+                                                    << "Phone numbers" << "Email" << "cID");
+    notesTopic = new NotesTopic("notes", 0, 3, QStringList() << "Head"
+                                            << "Description" << "nID");
 }
 
 BusinessTopic* ApplicationContext::getBusinessTopic()

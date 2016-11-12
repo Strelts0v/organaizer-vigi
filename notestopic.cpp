@@ -19,16 +19,22 @@ void NotesTopic::addItem(QStringList data)
     SqlStoredProcedures::addNotesItem(head, description);
 }
 
-void NotesTopic::updateItem(QStringList data, int rowId)
+void NotesTopic::updateItems(QStringList dataList)
 {
-    QString head = data[0];
-    QString description = data[1];
-    SqlStoredProcedures::updateNotesItem(head, description, rowId);
+    for(int i = 0; i < dataList.size(); ){
+        QString head = dataList[i++];
+        QString description = dataList[i++];
+        bool ok;
+        int idNote = dataList[i++].toInt(&ok, 10);
+        if(ok){
+            SqlStoredProcedures::updateNotesItem(head, description, idNote);
+        }
+    }
 }
 
-void NotesTopic::deleteItem(int rowId)
+void NotesTopic::deleteItem(int idNote)
 {
-    SqlStoredProcedures::deleteNotesItem(rowId);
+    SqlStoredProcedures::deleteNotesItem(idNote);
 }
 
 QStringList NotesTopic::find(QString pattern)

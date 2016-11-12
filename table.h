@@ -32,7 +32,7 @@ public:
 
     void addRow(QStringList dataList);
 
-    void updateRow(QStringList dataList, int rowId);
+    void updateRows(QStringList dataList);
 
     void deleteRow(int rowId);
 

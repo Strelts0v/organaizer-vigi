@@ -47,7 +47,7 @@ public:
 
     virtual void addItem(QStringList data) = 0;
 
-    virtual void updateItem(QStringList data, int id) = 0;
+    virtual void updateItems(QStringList dataList) = 0;
 
     virtual void deleteItem(int id) = 0;
 

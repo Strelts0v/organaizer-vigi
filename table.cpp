@@ -31,9 +31,9 @@ void Table::addRow(QStringList dataList)
     refreshTableContent();
 }
 
-void Table::updateRow(QStringList dataList, int rowId)
+void Table::updateRows(QStringList dataList)
 {
-    topic->updateItem(dataList, rowId);
+    topic->updateItems(dataList);
     refreshTableContent();
 }
 

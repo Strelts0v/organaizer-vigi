@@ -30,6 +30,10 @@ private slots:
 
     void addNewTopicItem(QStringList dataList);
 
+    void updateTopicItems(QStringList dataList);
+
+    void deleteTopicItem(int id);
+
     void on_addButton_clicked();
 
     void on_businessButton_clicked();

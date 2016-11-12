@@ -22,7 +22,7 @@ public:
 
     void addItem(QStringList data);
 
-    void updateItem(QStringList data, int rowId);
+    void updateItems(QStringList dataList);
 
     void deleteItem(int rowId);
 

@@ -39,7 +39,7 @@ void NotesTopic::deleteItem(int idNote)
 
 QStringList NotesTopic::find(QString pattern)
 {
-    return SqlStoredProcedures::findDataInTopic(pattern, getTopicName());
+    return SqlStoredProcedures::findDataInNotesTopic(pattern);
 }
 
 QStringList NotesTopic::getTopicContent()

@@ -49,7 +49,7 @@ void BusinessTopic::deleteItem(int businessId)
 
 QStringList BusinessTopic::find(QString pattern)
 {
-    return SqlStoredProcedures::findDataInTopic(pattern, getTopicName());
+    return SqlStoredProcedures::findDataInBusinessTopic(pattern);
 }
 
 QStringList BusinessTopic::getTopicContent()

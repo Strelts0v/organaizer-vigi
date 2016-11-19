@@ -38,7 +38,11 @@ public:
 
     static QStringList getNotesContent();
 
-    static QStringList findDataInTopic(QString pattern, QString topicName);
+    static QStringList findDataInBusinessTopic(QString pattern);
+
+    static QStringList findDataInContactsTopic(QString pattern);
+
+    static QStringList findDataInNotesTopic(QString pattern);
 
 };
 

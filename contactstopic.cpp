@@ -42,7 +42,7 @@ void ContactsTopic::deleteItem(int contactId)
 
 QStringList ContactsTopic::find(QString pattern)
 {
-    return SqlStoredProcedures::findDataInTopic(pattern, getTopicName());
+    return SqlStoredProcedures::findDataInContactsTopic(pattern);
 }
 
 QStringList ContactsTopic::getTopicContent()

@@ -20,6 +20,8 @@ private:
 
     ApplicationContext* context;
 
+    bool isButtonsEnable;
+
 public:
 
     explicit MainWindow(QWidget *parent = 0);
@@ -48,9 +50,13 @@ private slots:
 
     void on_updateButton_clicked();
 
+    void on_findButton_clicked();
+
 private:
 
-    //int getTableTopic();
+    void enableTableButtons();
+
+    void disableTableButtons();
 };
 
 #endif // MAINWINDOW_H

@@ -44,9 +44,13 @@ QStringList DatabaseDriver::getRecordsAccordingTopic(QString topicName)
     return dataList;
 }
 
-QStringList DatabaseDriver::findInformation(QString queryBody)
+QStringList DatabaseDriver::getRecordsAccordingPattern(QString queryBody)
 {
-
+    QSqlQuery query;
+    if(!query.exec(queryBody)){
+        qDebug() << "Error! Cannot find data...";
+    }
+    return parseFoundRecords(query);
 }
 
 DatabaseDriver::DatabaseDriver()
@@ -93,6 +97,22 @@ QStringList DatabaseDriver::parseQueryNotesRecords(QSqlQuery resultQuery)
         dataList.push_back(resultQuery.value(record.indexOf("head")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("description")).toString());
         dataList.push_back(resultQuery.value(record.indexOf("id_note")).toString());
+    }
+    return dataList;
+}
+
+QStringList DatabaseDriver::parseFoundRecords(QSqlQuery resultQuery)
+{
+    QStringList dataList;
+    QSqlRecord record = resultQuery.record();
+    if(QString::compare(record.fieldName(0), "id_business") == 0){
+        dataList = parseQueryBusinessRecords(resultQuery);
+    } else if(QString::compare(record.fieldName(0), "id_contact") == 0){
+        dataList = parseQueryContactsRecords(resultQuery);
+    } else if(QString::compare(record.fieldName(0), "id_note") == 0){
+        dataList = parseQueryNotesRecords(resultQuery);
+    } else {
+        qDebug() << "Error! no such field...";
     }
     return dataList;
 }

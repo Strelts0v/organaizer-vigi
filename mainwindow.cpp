@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     context = new ApplicationContext();
     table = new Table(ui->tableWidget);
+    isButtonsEnable = false;
+    disableTableButtons();
 }
 
 MainWindow::~MainWindow()
@@ -63,12 +65,18 @@ void MainWindow::on_businessButton_clicked()
 {
     table->setTopic(context->getBusinessTopic());
     table->refreshTableContent();
+    if(!isButtonsEnable){
+        enableTableButtons();
+    }
 }
 
 void MainWindow::on_contactsButton_clicked()
 {
     table->setTopic(context->getContactsTopic());
     table->refreshTableContent();
+    if(!isButtonsEnable){
+        enableTableButtons();
+    }
 }
 
 void MainWindow::on_deleteButton_clicked()
@@ -102,16 +110,43 @@ void MainWindow::on_notesButton_clicked()
 {
     table->setTopic(context->getNotesTopic());
     table->refreshTableContent();
+    if(!isButtonsEnable){
+        enableTableButtons();
+    }
 }
 
 void MainWindow::on_updateButton_clicked()
 {
     QStringList updateDataList;
-    int count = 0;
     for(int i = 0; i < ui->tableWidget->rowCount(); i++){
         for(int j = 0;  j < ui->tableWidget->columnCount(); j++){
             updateDataList.push_back(ui->tableWidget->item(i, j)->text());
         }
     }
     updateTopicItems(updateDataList);
+}
+
+void MainWindow::enableTableButtons()
+{
+    ui->addButton->setEnabled(true);
+    ui->deleteButton->setEnabled(true);
+    ui->updateButton->setEnabled(true);
+    ui->findButton->setEnabled(true);
+    ui->findEdit->setEnabled(true);
+    isButtonsEnable = true;
+}
+
+void MainWindow::disableTableButtons()
+{
+    ui->addButton->setDisabled(true);
+    ui->deleteButton->setDisabled(true);
+    ui->updateButton->setDisabled(true);
+    ui->findButton->setDisabled(true);
+    ui->findEdit->setDisabled(true);
+    isButtonsEnable = false;
+}
+
+void MainWindow::on_findButton_clicked()
+{
+    table->find(ui->findEdit->text());
 }

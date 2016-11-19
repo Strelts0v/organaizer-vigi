@@ -42,6 +42,10 @@ public:
 
 private:
 
+    void refreshTableContent(QStringList dataList);
+
+    void setHorizontalHeaders(QStringList headerLabels);
+
     void setTopicStyleSheet();
 
     void setBusinessStyleSheet();

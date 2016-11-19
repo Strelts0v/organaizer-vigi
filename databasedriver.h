@@ -10,9 +10,6 @@ namespace app {
 class DatabaseDriver;
 }
 
-// TODO:
-// сделать класс синглтоном
-
 class DatabaseDriver
 {
 private:
@@ -29,7 +26,7 @@ public:
 
     QStringList getRecordsAccordingTopic(QString topicName);
 
-    QStringList findInformation(QString queryBody);
+    QStringList getRecordsAccordingPattern(QString queryBody);
 
 private:
 
@@ -40,6 +37,8 @@ private:
     QStringList parseQueryContactsRecords(QSqlQuery resultQuery);
 
     QStringList parseQueryNotesRecords(QSqlQuery resultQuery);
+
+    QStringList parseFoundRecords(QSqlQuery resultQuery);
 };
 
 #endif // DATABASEDRIVER_H

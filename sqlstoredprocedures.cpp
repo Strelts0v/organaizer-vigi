@@ -114,7 +114,28 @@ QStringList SqlStoredProcedures::getNotesContent()
     return DatabaseDriver::getDatabaseDriver()->getRecordsAccordingTopic(topicName);
 }
 
-QStringList SqlStoredProcedures::findDataInTopic(QString pattern, QString topicName)
+QStringList SqlStoredProcedures::findDataInBusinessTopic(QString pattern)
 {
+    QString queryBody = "select * from business "
+            "where head like '%%1%' or deadline like  '%%1%'"
+            "or description like  '%%1%'";
+    queryBody = queryBody.arg(pattern);
+    return  DatabaseDriver::getDatabaseDriver()->getRecordsAccordingPattern(queryBody);
+}
 
+QStringList SqlStoredProcedures::findDataInContactsTopic(QString pattern)
+{
+    QString queryBody = "select * from contacts "
+            "where full_name like '%%1%' or phone_numbers like  '%%1%'"
+            "or email like  '%%1%'";
+    queryBody = queryBody.arg(pattern);
+    return  DatabaseDriver::getDatabaseDriver()->getRecordsAccordingPattern(queryBody);
+}
+
+QStringList SqlStoredProcedures::findDataInNotesTopic(QString pattern)
+{
+    QString queryBody = "select * from notes "
+            "where head like '%%1%' or description like  '%%1%'";
+    queryBody = queryBody.arg(pattern);
+    return  DatabaseDriver::getDatabaseDriver()->getRecordsAccordingPattern(queryBody);
 }

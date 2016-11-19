@@ -1,4 +1,5 @@
 #include "table.h"
+#include <QPalette>
 
 Table::Table()
 {}
@@ -45,26 +46,53 @@ void Table::deleteRow(int rowId)
 
 QStringList Table::find(QString pattern)
 {
-    return topic->find(pattern);
+    QStringList dataList = topic->find(pattern);
+    refreshTableContent(dataList);
 }
 
 void Table::refreshTableContent()
 {
     QStringList dataList = topic->getTopicContent();
-    topic->setRowCount(dataList.size()/topic->getColumnCount());
+    topic->setRowCount(dataList.size() / topic->getColumnCount());
     tableWidget->setColumnCount(topic->getColumnCount());
     tableWidget->setRowCount(topic->getRowCount());
-    tableWidget->setHorizontalHeaderLabels(topic->getColumnHeaders());
 
-    setTopicStyleSheet();
+    setHorizontalHeaders(topic->getColumnHeaders());
 
     int count = 0;
     for(int i = 0; i < tableWidget->rowCount(); i++)
         for(int j = 0; j < tableWidget->columnCount(); j++){
             QTableWidgetItem *item = new QTableWidgetItem(dataList[count++]);
-            item->setBackgroundColor(Qt::green);
+            item->setTextAlignment(Qt::AlignCenter);
             tableWidget->setItem(i, j, item);
         }
+    setTopicStyleSheet();
+}
+
+void Table::refreshTableContent(QStringList dataList)
+{
+    topic->setRowCount(dataList.size() / topic->getColumnCount());
+    tableWidget->setColumnCount(topic->getColumnCount());
+    tableWidget->setRowCount(topic->getRowCount());
+
+    setHorizontalHeaders(topic->getColumnHeaders());
+
+    int count = 0;
+    for(int i = 0; i < tableWidget->rowCount(); i++)
+        for(int j = 0; j < tableWidget->columnCount(); j++){
+            QTableWidgetItem *item = new QTableWidgetItem(dataList[count++]);
+            item->setTextAlignment(Qt::AlignCenter);
+            tableWidget->setItem(i, j, item);
+        }
+    setTopicStyleSheet();
+}
+
+void Table::setHorizontalHeaders(QStringList headerLabels)
+{
+    for(int i = 0; i < headerLabels.size(); i++){
+        QTableWidgetItem *headerItem = new QTableWidgetItem(headerLabels[i]);
+        tableWidget->setHorizontalHeaderItem(i, headerItem);
+    }
 }
 
 void Table::setTopicStyleSheet()
@@ -90,6 +118,41 @@ void Table::setBusinessStyleSheet()
     tableWidget->setColumnWidth(1, 80);
     tableWidget->setColumnWidth(2, 278);
     tableWidget->setColumnWidth(3, 75);
+    const int headColumn = 0;
+    const int deadlineColumn =1;
+    const int descriptionColumn = 2;
+    const int priorityColumn = 3;
+
+    for(int i = 0; i < tableWidget->rowCount(); i++){
+        QTableWidgetItem *item = tableWidget->item(i, 3);
+        bool ok;
+        int priority = item->text().toInt(&ok, 10);
+        switch (priority) {
+        case 1:
+            item->setBackgroundColor(QColor(255, 218, 185));
+            item->setText("high"); tableWidget->setItem(i, priorityColumn, item);
+            tableWidget->item(i, headColumn)->setBackgroundColor(QColor(255, 218, 185));
+            tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(255, 218, 185));
+            tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(255, 218, 185));
+            break;
+        case 2:
+            item->setBackgroundColor(QColor(255, 250, 205));
+            item->setText("medium"); tableWidget->setItem(i, 3, item);
+            tableWidget->item(i, headColumn)->setBackgroundColor(QColor(255, 250, 205));
+            tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(255, 250, 205));
+            tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(255, 250, 205));
+            break;
+        case 3:
+            item->setBackgroundColor(QColor(240, 255, 255));
+            item->setText("low"); tableWidget->setItem(i, 3, item);
+            tableWidget->item(i, headColumn)->setBackgroundColor(QColor(240, 255, 255));
+            tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(240, 255, 255));
+            tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(240, 255, 255));
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 void Table::setContactsStyleSheet()

@@ -1,5 +1,4 @@
 #include "table.h"
-#include <QPalette>
 
 Table::Table()
 {}
@@ -44,7 +43,7 @@ void Table::deleteRow(int rowId)
     refreshTableContent();
 }
 
-QStringList Table::find(QString pattern)
+void Table::find(QString pattern)
 {
     QStringList dataList = topic->find(pattern);
     refreshTableContent(dataList);
@@ -130,21 +129,27 @@ void Table::setBusinessStyleSheet()
         switch (priority) {
         case 1:
             item->setBackgroundColor(QColor(255, 218, 185));
-            item->setText("high"); tableWidget->setItem(i, priorityColumn, item);
+            item->setText("high");
+            item->setFlags(Qt::ItemIsEditable^2);
+            tableWidget->setItem(i, priorityColumn, item);
             tableWidget->item(i, headColumn)->setBackgroundColor(QColor(255, 218, 185));
             tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(255, 218, 185));
             tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(255, 218, 185));
             break;
         case 2:
             item->setBackgroundColor(QColor(255, 250, 205));
-            item->setText("medium"); tableWidget->setItem(i, 3, item);
+            item->setText("medium");
+            tableWidget->setItem(i, 3, item);
+            item->setFlags(Qt::ItemIsEditable^2);
             tableWidget->item(i, headColumn)->setBackgroundColor(QColor(255, 250, 205));
             tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(255, 250, 205));
             tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(255, 250, 205));
             break;
         case 3:
             item->setBackgroundColor(QColor(240, 255, 255));
-            item->setText("low"); tableWidget->setItem(i, 3, item);
+            item->setText("low");
+            tableWidget->setItem(i, 3, item);
+            item->setFlags(Qt::ItemIsEditable^2);
             tableWidget->item(i, headColumn)->setBackgroundColor(QColor(240, 255, 255));
             tableWidget->item(i, deadlineColumn)->setBackgroundColor(QColor(240, 255, 255));
             tableWidget->item(i, descriptionColumn)->setBackgroundColor(QColor(240, 255, 255));

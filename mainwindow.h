@@ -52,6 +52,12 @@ private slots:
 
     void on_findButton_clicked();
 
+    void on_actionAdd_triggered();
+
+    void on_actionDelete_triggered();
+
+    void on_actionUpdate_triggered();
+
 private:
 
     void enableTableButtons();

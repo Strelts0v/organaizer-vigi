@@ -33,10 +33,10 @@ void BusinessTopic::updateItems(QStringList dataList)
         QString head = dataList[i++];
         QString deadline = dataList[i++];
         QString description = dataList[i++];
-        bool ok1, ok2;
-        int priority = dataList[i++].toInt(&ok1, 10);
-        int businessId = dataList[i++].toInt(&ok2, 10);
-        if(ok1 && ok2){
+        bool ok;
+        int priority = convertPriorityToInteger(dataList[i++]);
+        int businessId = dataList[i++].toInt(&ok, 10);
+        if(ok){
             SqlStoredProcedures::updateBusinessItem(head, deadline, description, priority, businessId);
         }
     }
@@ -55,4 +55,22 @@ QStringList BusinessTopic::find(QString pattern)
 QStringList BusinessTopic::getTopicContent()
 {
     return SqlStoredProcedures::getBusinessContent();
+}
+
+int BusinessTopic::convertPriorityToInteger(QString priority)
+{
+    int priorityInIntegerFormat = 0;
+    const int HIGH_PRIORITY = 1;
+    const int MEDIUM_PRIORITY = 2;
+    const int LOW_PRIORITY = 3;
+    if(QString::compare(priority, "high") == 0){
+        priorityInIntegerFormat = HIGH_PRIORITY;
+    }else if(QString::compare(priority, "medium") == 0){
+        priorityInIntegerFormat = MEDIUM_PRIORITY;
+    }else if(QString::compare(priority, "low") == 0){
+        priorityInIntegerFormat = LOW_PRIORITY;
+    }else{
+       // exception
+    }
+    return priorityInIntegerFormat;
 }

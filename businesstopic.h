@@ -30,6 +30,10 @@ public:
 
     QStringList getTopicContent();
 
+private:
+
+    int convertPriorityToInteger(QString priority);
+
 };
 
 #endif // BUSINESSTOPIC_H

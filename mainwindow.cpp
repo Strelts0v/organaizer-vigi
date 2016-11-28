@@ -81,6 +81,9 @@ void MainWindow::on_contactsButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
+    if(ui->tableWidget->selectedItems().isEmpty()){
+        return;
+    }
     QList<QTableWidgetItem *> selectedList = ui->tableWidget->selectedItems();
 
     int listCount = 0; bool ok;
@@ -149,4 +152,19 @@ void MainWindow::disableTableButtons()
 void MainWindow::on_findButton_clicked()
 {
     table->find(ui->findEdit->text());
+}
+
+void MainWindow::on_actionAdd_triggered()
+{
+    on_addButton_clicked();
+}
+
+void MainWindow::on_actionDelete_triggered()
+{
+    on_deleteButton_clicked();
+}
+
+void MainWindow::on_actionUpdate_triggered()
+{
+    on_updateButton_clicked();
 }

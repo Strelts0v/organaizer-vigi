@@ -8,7 +8,6 @@ DatabaseDriver* DatabaseDriver::driver = NULL;
 DatabaseDriver* DatabaseDriver::getDatabaseDriver()
 {
     if(!driver){
-        //const QString databasePath = "..\\ViGi\\database\\database.sqlite";
         driver = new DatabaseDriver();
     }
     return DatabaseDriver::driver;
@@ -56,7 +55,7 @@ QStringList DatabaseDriver::getRecordsAccordingPattern(QString queryBody)
 DatabaseDriver::DatabaseDriver()
 {
     database = QSqlDatabase::addDatabase("QSQLITE");
-    database.setDatabaseName("..\\ViGi\\database\\database.sqlite");
+    database.setDatabaseName("..//ViGi//database//database.sqlite");
     if(!database.open()){
         qDebug() << "Не удаётся подключится к базе данных.";
     }

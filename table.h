@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QTableWidget>
+#include <QItemDelegate>
 #include "topic.h"
 
 namespace app {
@@ -36,7 +37,7 @@ public:
 
     void deleteRow(int rowId);
 
-    QStringList find(QString pattern);
+    void find(QString pattern);
 
     void refreshTableContent();
 

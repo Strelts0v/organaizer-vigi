@@ -37,5 +37,5 @@ NotesTopic* ApplicationContext::getNotesTopic()
 
 void ApplicationContext::setNotesTopic(NotesTopic* notesTopic)
 {
-    this->notesTopic;
+    this->notesTopic = notesTopic;
 }
